@@ -231,13 +231,42 @@ document.getElementById("refresh-time").textContent = refreshTime;
   <!-- ===== MAIN CONTENT ===== -->
   <main>
     <section class="intro">
-      <h2>About ELWOIC</h2>
-      <p>
-        The Elamkulam Local Weather Observation and Information Centre (ELWOIC) 
-        is a community-driven initiative dedicated to monitoring and sharing local 
-        weather data for Elamkulam, Kerala. Our goal is to provide accurate, 
-        timely, and locally relevant weather information for awareness and research.
-      </p>
+      <!-- NOTICE BOX - ELWOIC THEME -->
+<div class="notice-box" style="
+    width: 100%;
+    background: #eaf4fc;
+    border-left: 6px solid #ff4e4e;
+    padding: 18px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+">
+
+    <div style="display:flex; align-items:center; margin-bottom:12px;">
+        <svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='#ff4d4d' viewBox='0 0 24 24' style="margin-right:10px;">
+            <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/>
+        </svg>
+        <h2 style="font-size: 1.6rem; font-weight: 700; color: #002b5c; margin:0;">Important Notice</h2>
+    </div>
+
+    <ul style="padding-left: 20px; margin:0; line-height:1.6; font-size: 1rem; color: #00315c; font-weight: 600;">
+        <li>This website is <b>not an official Government or Panchayat website</b>.</li>
+        <li>It is a <b>private student-made weather observation project</b>.</li>
+        <li>
+            For official alerts, please visit 
+            <a href="https://mausam.imd.gov.in/thiruvananthapuram/" target="_blank" style="color:#0056ff; text-decoration:underline;">
+                IMD Kerala (Thiruvananthapuram)
+            </a>.
+        </li>
+    </ul>
+
+    <p style="margin-top: 12px; color: #555; font-size: 0.9rem; font-style: italic;">
+        Cross-check severe weather alerts with official IMD sources.
+    </p>
+
+</div>
+
     </section>
 
     <section class="links">
