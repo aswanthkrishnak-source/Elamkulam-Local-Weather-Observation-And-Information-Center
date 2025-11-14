@@ -289,6 +289,62 @@ document.getElementById("refresh-time").textContent = refreshTime;
     <h3 style="color:#555; margin-top:20px; margin-bottom:5px;">Information Section</h3>
     <p id="info-message" style="margin:8px 0; font-size:0.9rem; color:#555;"></p>
 </section>
+      <style>
+  .marquee-container {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #0078ff, #00c6ff);
+    color: white;
+    padding: 10px 0;
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    font-family: "Poppins", sans-serif;
+  }
+
+  .marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: scroll 15s linear infinite;
+    font-weight: 500;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+  }
+
+  .alert {
+    background: linear-gradient(90deg, #ff4e50, #f9d423);
+    font-weight: bold;
+    color: #fff;
+  }
+</style>
+
+<div class="marquee-container" id="marqueeBox">
+  <div class="marquee-text" id="marqueeText">
+    🌤️ Elamkulam Local Weather Observation And Information Center — Gives you weather info of Elamkulam.
+  </div>
+</div>
+
+<script>
+  const marqueeBox = document.getElementById("marqueeBox");
+  const marqueeText = document.getElementById("marqueeText");
+
+  function showAlertMessage(message, durationSeconds = 10) {
+    marqueeText.textContent = message;
+    marqueeBox.classList.add("alert");
+
+    setTimeout(() => {
+      marqueeText.textContent =
+        "🌤️ Elamkulam Local Weather Observation And Information Center — Gives you weather info of Elamkulam.";
+      marqueeBox.classList.remove("alert");
+    }, durationSeconds * 1000);
+  }
+</script>
+
 
 
     <section class="links">
