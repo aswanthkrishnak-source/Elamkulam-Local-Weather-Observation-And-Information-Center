@@ -1,66 +1,60 @@
-import { fetchWeatherApi } from "openmeteo";
+// ---------------------------
+// CONFIGURATION
+// ---------------------------
+const openWeatherApiKey = "856b819166fedc7df9e65814b23e0970"; // <-- Add your OpenWeatherMap API key
+const latitude = 10.9081;     // Elamkulam latitude
+const longitude = 76.2296;    // Elamkulam longitude
 
-const openWeatherKey = "856b819166fedc7df9e65814b23e0970";
-const lat = 10.9081;
-const lon = 76.2296;
+// Open-Meteo endpoint (direct browser fetch)
+const openMeteoUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,humidity_2m,windspeed_10m&current_weather=true&timezone=Asia/Kolkata`;
 
-async function fetchOpenWeather() {
-  const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherKey}&units=metric`
-  );
-  return await res.json();
-}
-
-async function fetchOpenMeteo() {
-  const params = {
-    latitude: lat,
-    longitude: lon,
-    hourly: "temperature_2m,humidity_2m,windspeed_10m",
-  };
-  const url = "https://api.open-meteo.com/v1/forecast";
-  const responses = await fetchWeatherApi(url, params);
-  const response = responses[0];
-
-  const hourly = response.hourly()!;
-  const utcOffset = response.utcOffsetSeconds();
-
-  const hoursCount = (Number(hourly.timeEnd()) - Number(hourly.time())) / hourly.interval();
-  const timeArray = Array.from({ length: hoursCount }, (_, i) =>
-    new Date((Number(hourly.time()) + i * hourly.interval() + utcOffset) * 1000)
-  );
-
-  return {
-    time: timeArray,
-    temperature: hourly.variables(0)!.valuesArray(),
-    humidity: hourly.variables(1)!.valuesArray(),
-    windspeed: hourly.variables(2)!.valuesArray(),
-  };
-}
-
-async function updateSnapshot() {
+// ---------------------------
+// MAIN FUNCTION
+// ---------------------------
+async function loadWeatherSnapshot() {
   try {
-    const [owData, omData] = await Promise.all([fetchOpenWeather(), fetchOpenMeteo()]);
+    // 1️⃣ OpenWeatherMap fetch
+    const owRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${openWeatherApiKey}&units=metric`);
+    const owData = await owRes.json();
 
-    // Use OpenWeather for real-time main data
-    document.getElementById("temp").textContent = owData.main.temp.toFixed(1);
-    document.getElementById("feels").textContent = owData.main.feels_like.toFixed(1);
-    document.getElementById("humidity").textContent = owData.main.humidity;
-    document.getElementById("wind").textContent = (owData.wind.speed * 3.6).toFixed(1);
-    document.getElementById("visibility").textContent = (owData.visibility / 1000).toFixed(1);
+    // Extract values from OpenWeather
+    const temp = owData.main.temp.toFixed(1);
+    const feels = owData.main.feels_like.toFixed(1);
+    const humidity = owData.main.humidity;
+    const wind = (owData.wind.speed * 3.6).toFixed(1); // m/s → km/h
+    const visibility = (owData.visibility / 1000).toFixed(1);
+    const condition = owData.weather[0].main;
 
-    // Condition logic: combine OpenWeather & OpenMeteo forecast
-    let condition = owData.weather[0].main;
-    const nextHourTemp = omData.temperature[0];
-    if (nextHourTemp > 35) condition += " 🔥";
+    // 2️⃣ Open-Meteo fetch
+    const omRes = await fetch(openMeteoUrl);
+    const omData = await omRes.json();
+
+    // Extract current weather from Open-Meteo
+    const omTemp = omData.current_weather?.temperature ?? "--";
+    const omWind = omData.current_weather?.windspeed ?? "--";
+
+    // ---------------------------
+    // 3️⃣ Update HTML boxes
+    // ---------------------------
+    document.getElementById("temp").textContent = temp;
+    document.getElementById("feels").textContent = feels;
+    document.getElementById("humidity").textContent = humidity;
+    document.getElementById("wind").textContent = wind;
+    document.getElementById("visibility").textContent = visibility;
     document.getElementById("condition").textContent = condition;
+
+    // Optional: you can add Open-Meteo values to a separate box if desired
+    // e.g., document.getElementById("om-temp").textContent = omTemp;
 
     document.getElementById("updated").textContent = new Date().toLocaleTimeString();
   } catch (err) {
-    console.error("Weather snapshot error:", err);
+    console.error("Weather snapshot failed:", err);
+    document.getElementById("updated").textContent = "Error fetching data";
   }
 }
 
-// Initial load
-updateSnapshot();
-// Auto-refresh every 10 minutes
-setInterval(updateSnapshot, 600000);
+// ---------------------------
+// INITIAL LOAD + AUTO REFRESH
+// ---------------------------
+loadWeatherSnapshot();
+setInterval(loadWeatherSnapshot, 10 * 60 * 1000); // every 10 minutes
