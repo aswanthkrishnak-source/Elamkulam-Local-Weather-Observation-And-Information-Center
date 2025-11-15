@@ -996,8 +996,10 @@ document.getElementById("refresh-time").textContent = refreshTime;
         });
     </script>
 </section>
-  <section class="aqi-dashboard-section">
+ <section class="aqi-dashboard-section">
     <h2>🌫️ Air Quality Index (AQI)</h2>
+
+    <!-- AQI Circle + Value -->
     <div class="aqi-status-container">
         <div class="aqi-circle" id="aqiCircle"></div>
         <div class="aqi-text" id="aqiValue">Loading AQI...</div>
@@ -1010,6 +1012,11 @@ document.getElementById("refresh-time").textContent = refreshTime;
         <div class="legend-item aqi-moderate"><span>3 — Moderate</span></div>
         <div class="legend-item aqi-poor"><span>4 — Poor</span></div>
         <div class="legend-item aqi-very-poor"><span>5 — Very Poor</span></div>
+    </div>
+
+    <!-- Health Advice -->
+    <div class="aqi-health-advice" id="aqiAdvice">
+        Loading health advice...
     </div>
 
     <style>
@@ -1079,8 +1086,17 @@ document.getElementById("refresh-time").textContent = refreshTime;
         .legend-item span {
             margin-left: 5px;
         }
+
+        /* Health Advice */
+        .aqi-health-advice {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #333;
+            text-align: center;
+        }
     </style>
 </section>
+
 
 <script src="aqi.js"></script>
 
