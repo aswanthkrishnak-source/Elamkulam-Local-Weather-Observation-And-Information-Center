@@ -427,8 +427,7 @@ document.getElementById("refresh-time").textContent = refreshTime;
       }
     });
   </script>
-</section>
-<section id="weather-snapshot">
+<section id="weather-snapshot-section">
   <div class="weather-mini-dashboard">
     <h2>🌦 Elamkulam Weather Snapshot</h2>
 
@@ -463,12 +462,27 @@ document.getElementById("refresh-time").textContent = refreshTime;
         <div class="info-value" id="condition">--</div>
         <div class="info-unit">☁</div>
       </div>
+
+      <!-- Optional: Open-Meteo data -->
+      <div class="info-box">
+        <div class="info-title">OM Temp</div>
+        <div class="info-value" id="om-temp">--</div>
+        <div class="info-unit">°C</div>
+      </div>
+      <div class="info-box">
+        <div class="info-title">OM Wind</div>
+        <div class="info-value" id="om-wind">--</div>
+        <div class="info-unit">km/h</div>
+      </div>
     </div>
 
     <p class="last-update">Last updated: <span id="updated">--</span></p>
   </div>
-  <script src="snapshot.js" type="module"></script>
+
+  <!-- Link your JS file -->
+  <script src="snapshot.js"></script>
 </section>
+
 
   <!-- ===== FOOTER ===== -->
   <footer>
