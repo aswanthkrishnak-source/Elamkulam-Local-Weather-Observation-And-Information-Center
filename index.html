@@ -1003,6 +1003,15 @@ document.getElementById("refresh-time").textContent = refreshTime;
         <div class="aqi-text" id="aqiValue">Loading AQI...</div>
     </div>
 
+    <!-- AQI Legend -->
+    <div class="aqi-legend">
+        <div class="legend-item aqi-good"><span>1 — Excellent</span></div>
+        <div class="legend-item aqi-fair"><span>2 — Fair</span></div>
+        <div class="legend-item aqi-moderate"><span>3 — Moderate</span></div>
+        <div class="legend-item aqi-poor"><span>4 — Poor</span></div>
+        <div class="legend-item aqi-very-poor"><span>5 — Very Poor</span></div>
+    </div>
+
     <style>
         .aqi-dashboard-section {
             font-family: 'Poppins', sans-serif;
@@ -1049,8 +1058,30 @@ document.getElementById("refresh-time").textContent = refreshTime;
         .aqi-moderate { background-color: #ffc107; }    /* Yellow */
         .aqi-poor { background-color: #ff9800; }        /* Orange */
         .aqi-very-poor { background-color: #f44336; }   /* Red */
+
+        /* Legend Styling */
+        .aqi-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .legend-item span {
+            margin-left: 5px;
+        }
     </style>
 </section>
+
 <script src="aqi.js"></script>
 
   <section class="unified-header-section">
