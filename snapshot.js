@@ -1,5 +1,6 @@
+
 // snapshot.js
-// Elamkulam Weather Snapshot (robust version)
+// Elamkulam Weather Snapshot (fully corrected)
 
 const OPENWEATHER_KEY = "856b819166fedc7df9e65814b23e0970";
 const LAT = 10.9081;
@@ -35,7 +36,7 @@ async function fetchOW() {
 // Fetch OpenWeather AQI
 async function fetchOWAQI() {
   try {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${LAT}&lon=${LON}&appid=${856b819166fedc7df9e65814b23e0970}`);
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${LAT}&lon=${LON}&appid=${OPENWEATHER_KEY}`);
     if (!res.ok) throw new Error("OW AQI failed");
     return await res.json();
   } catch (e) {
