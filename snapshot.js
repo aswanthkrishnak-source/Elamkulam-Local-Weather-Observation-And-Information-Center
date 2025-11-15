@@ -173,6 +173,7 @@ async function loadWeather() {
 // Ensure DOM loaded
 window.addEventListener("DOMContentLoaded", () => {
   loadWeather();
-  setInterval(loadWeather, 120000); // refresh every 2 min
+  setInterval(loadWeather, 120000);
 });
+
 
