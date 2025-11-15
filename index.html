@@ -427,7 +427,76 @@ document.getElementById("refresh-time").textContent = refreshTime;
       }
     });
   </script>
+  </section>
 <section id="weather-snapshot-section">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    .weather-mini-dashboard {
+      max-width: 900px;
+      margin: 5px auto;
+      padding: 10px;
+      background: rgba(255,255,255,0.9); /* slightly transparent light background */
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .weather-mini-dashboard h2 {
+      text-align: center;
+      color: #004080;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+
+    .info-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .info-box {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      text-align: center;
+      padding: 8px 5px;
+      flex: 1 1 90px;
+      min-width: 90px;
+    }
+
+    .info-title {
+      font-size: 0.7em;
+      color: #004080;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .info-unit {
+      font-size: 0.7em;
+      color: #777;
+    }
+
+    .last-update {
+      text-align: center;
+      color: #666;
+      font-size: 0.75em;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 480px) {
+      .info-box { flex: 1 1 80px; min-width: 80px; }
+      .info-value { font-size: 1.1em; }
+    }
+  </style>
+
   <div class="weather-mini-dashboard">
     <h2>🌦 Elamkulam Weather Snapshot</h2>
 
@@ -462,8 +531,6 @@ document.getElementById("refresh-time").textContent = refreshTime;
         <div class="info-value" id="condition">--</div>
         <div class="info-unit">☁</div>
       </div>
-
-      <!-- Optional: Open-Meteo data -->
       <div class="info-box">
         <div class="info-title">OM Temp</div>
         <div class="info-value" id="om-temp">--</div>
@@ -479,10 +546,9 @@ document.getElementById("refresh-time").textContent = refreshTime;
     <p class="last-update">Last updated: <span id="updated">--</span></p>
   </div>
 
-  <!-- Link your JS file -->
+  <!-- JS to load weather -->
   <script src="snapshot.js"></script>
 </section>
-
 
   <!-- ===== FOOTER ===== -->
   <footer>
