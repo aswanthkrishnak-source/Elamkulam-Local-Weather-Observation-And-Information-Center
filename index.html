@@ -611,136 +611,134 @@ document.getElementById("refresh-time").textContent = refreshTime;
     <div id="ww_306f1b351ac5d" v='1.3' loc='id' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":["wl396"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/" id="ww_306f1b351ac5d_u" target="_blank">Free weather widget for website</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_306f1b351ac5d"></script>
 
 </section>
- <section class="weather-dashboard-section">
+<section class="weather-dashboard-section">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        
-        /* --- General Styling --- */
-        .weather-dashboard-section {
-            font-family: 'Roboto', sans-serif;
-            background-color: transparent;
-            margin: 0;
-            padding: 40px 20px;
-            color: #333;
-            text-align: center;
-        }
-        .weather-dashboard-section h1 {
-            color: #1f3a93;
-            margin-bottom: 35px;
-            font-size: 32px;
-            font-weight: 500;
-        }
 
-        /* --- Dashboard Container & Table --- */
-        .dashboard-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+        /* --- General Styling --- */
+        .weather-dashboard-section {
+            font-family: 'Roboto', sans-serif;
+            background-color: transparent;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+            text-align: center;
+        }
 
-        /* --- Table Wrapper for Mobile Scroll --- */
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+        .weather-dashboard-section h1 {
+            color: #1f3a93;
+            margin-bottom: 35px;
+            font-size: 32px;
+            font-weight: 500;
+        }
 
-        .table-wrapper table {
-            width: 100%;
-            min-width: 700px; /* Ensures content fits */
-            border-collapse: collapse;
-            text-align: left;
-        }
+        /* --- Dashboard Container & Table --- */
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
 
-        th, td {
-            padding: 16px 20px;
-            border-bottom: 1px solid #eef1f5;
-            transition: background-color 0.3s ease;
-        }
+        /* --- Table Styling --- */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
-        th {
-            background-color: #e6eef7;
-            color: #1f3a93;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            text-align: left;
+        }
 
-        .data-label {
-            font-weight: 500;
-            color: #444;
-            width: 1000px;
-            background-color: #f7f9fb;
-        }
+        th, td {
+            padding: 16px 20px;
+            border: 1px solid #e0e0e0; /* visible borders */
+            transition: background-color 0.3s ease;
+        }
 
-        td {
-            font-size: 15px;
-            color: #555;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr:hover {
-            background-color: #fcfdff;
-        }
+        th {
+            background-color: #e6eef7;
+            color: #1f3a93;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-        .source-info-row td {
-            font-weight: 400;
-            font-size: 13px;
-            background-color: #007bff1a;
-            color: #1f3a93;
-            padding: 10px 20px;
-            border-bottom: 2px solid #e6eef7;
-        }
+        .data-label {
+            font-weight: 500;
+            color: #444;
+            background-color: #f7f9fb;
+        }
 
-        .rain-status {
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: inline-block;
-            font-size: 13px;
-            transition: all 0.3s ease;
-        }
-        .rain-status.yes { 
-            background: #d9edf7; 
-            color: #31708f; 
-            border: 1px solid #bce8f1;
-        }
-        .rain-status.no { 
-            background: #dff0d8; 
-            color: #3c763d; 
-            border: 1px solid #d6e9c6;
-        }
-        .error-status { 
-            color: #a94442; 
-            font-weight: 700;
-        }
+        td {
+            font-size: 15px;
+            color: #555;
+        }
 
-        tfoot td {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            font-size: 11px;
-            color: #888;
-            background-color: #f0f4f8;
-            border-top: 1px solid #eef1f5;
-            text-align: center;
-        }
+        tr:hover {
+            background-color: #fcfdff;
+        }
 
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            .weather-dashboard-section h1 { font-size: 24px; }
-            th, td { padding: 12px 15px; font-size: 14px; }
-            .data-label { width: 140px; font-size: 14px; }
-            .rain-status { font-size: 12px; }
-        }
+        .source-info-row td {
+            font-weight: 400;
+            font-size: 13px;
+            background-color: #007bff1a;
+            color: #1f3a93;
+        }
 
-        @media (max-width: 500px) {
-            .data-label { width: 100px; }
-        }
+        .rain-status {
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .rain-status.yes { 
+            background: #d9edf7; 
+            color: #31708f; 
+            border: 1px solid #bce8f1;
+        }
+
+        .rain-status.no { 
+            background: #dff0d8; 
+            color: #3c763d; 
+            border: 1px solid #d6e9c6;
+        }
+
+        .error-status { 
+            color: #a94442; 
+            font-weight: 700;
+        }
+
+        tfoot td {
+            padding: 15px;
+            font-size: 12px;
+            color: #888;
+            background-color: #f0f4f8;
+            border-top: 1px solid #eef1f5;
+            text-align: center;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .weather-dashboard-section h1 { font-size: 24px; }
+            th, td { padding: 12px 15px; font-size: 14px; }
+            .data-label { font-size: 14px; }
+            .rain-status { font-size: 12px; }
+        }
+
+        @media (max-width: 500px) {
+            .data-label { font-size: 12px; }
+        }
     </style>
 
     <h1>☁️ Elamkulam OpenWeather Forecast Dashboard</h1>
