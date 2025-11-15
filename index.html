@@ -337,8 +337,8 @@ document.getElementById("refresh-time").textContent = refreshTime;
     </section>
   </main>
 <section id="intro-marquee">
-  <div class="marquee-container" id="marqueeBox">
-    <div class="marquee-text" id="marqueeText">
+  <div class="marquee-container">
+    <div class="marquee-text">
       🌤️ Elamkulam Local Weather Observation And Information Center — Gives you weather info of Elamkulam.
     </div>
   </div>
@@ -374,31 +374,13 @@ document.getElementById("refresh-time").textContent = refreshTime;
       100% { transform: translateX(-100%); }
     }
 
-    #intro-marquee .alert {
-      background: linear-gradient(90deg, #ff4e50, #f9d423);
-      font-weight: bold;
-      color: #fff;
+    /* Optional: pause on hover */
+    #intro-marquee .marquee-container:hover .marquee-text {
+      animation-play-state: paused;
     }
   </style>
-
-  <script>
-    const marqueeBox = document.getElementById("marqueeBox");
-    const marqueeText = document.getElementById("marqueeText");
-
-    function showAlertMessage(message, durationSeconds = 10) {
-      marqueeText.textContent = message;
-      marqueeBox.classList.add("alert");
-
-      setTimeout(() => {
-        marqueeText.textContent = "🌤️ Elamkulam Local Weather Observation And Information Center — Gives you weather info of Elamkulam.";
-        marqueeBox.classList.remove("alert");
-      }, durationSeconds * 1000);
-    }
-
-    // Example usage:
-    // showAlertMessage("⚠️ Heavy Rain Alert in Elamkulam! Stay safe! ⚠️", 8);
-  </script>
 </section>
+
 <section id="imd-marquee-section">
   <div class="marquee-container" id="marqueeContainer">
     <div class="marquee-text" id="marqueeText">
