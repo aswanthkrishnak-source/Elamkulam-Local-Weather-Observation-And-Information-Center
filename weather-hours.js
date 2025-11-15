@@ -14,7 +14,7 @@ async function getWeatherData() {
   const current = await currentRes.json();
   const forecast = await forecastRes.json();
 
-  // Forecast blocks
+  // Forecast blocks (3h, 6h, 9h)
   const f3 = forecast.list[0];
   const f6 = forecast.list[1];
   const f9 = forecast.list[2];
@@ -85,3 +85,4 @@ async function getWeatherData() {
 }
 
 getWeatherData();
+
