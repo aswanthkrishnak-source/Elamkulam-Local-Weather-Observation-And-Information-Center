@@ -212,7 +212,7 @@
       display: inline-block;
       white-space: nowrap;
       padding-left: 100%;
-      animation: scroll 50s linear infinite;
+      animation: scroll 70s linear infinite;
       font-weight: bold;
       font-size: 16px;
     }
@@ -400,7 +400,7 @@ document.getElementById("refresh-time").textContent = refreshTime;
       display: inline-block;
       white-space: nowrap;
       padding-left: 100%;
-      animation: scroll 30s linear infinite;
+      animation: scroll 35s linear infinite;
       font-weight: 600;
       font-size: 1.1em;
       letter-spacing: 0.5px;
@@ -559,13 +559,65 @@ document.getElementById("refresh-time").textContent = refreshTime;
   </div>
 </div>
 </section>
+  <h3>Average KERALA</h3>
+<section class="kerala average">
+    <title>Kerala Weather Widgets Section</title>
+    <style>
+        /* CSS is placed directly inside the <head> */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: #f4f8fb;
+        }
 
+        /* Style for the main container wrapping both widgets */
+        .weather-widgets-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Style for the 7-day ticker widget box */
+        .widget-box {
+            background: #fff;
+            border-radius: 0px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .widget-box h2 {
+            color: #0277BD;
+            margin-bottom: 25px;
+        }
+        
+        /* Style for the Today's weather header */
+        .kerala-today-header {
+            color: #0277BD;
+            margin-top: 40px;
+            margin-bottom: 25px;
+        }
+    </style>
+    <div class="widget-box">
+        <h2>Expected In KERALA For Next 7 days</h2>
+        <div id="ww_7d443210e054f" v='1.3' loc='id' a='{"t":"ticker","lang":"en","sl_lpl":1,"ids":["wl396"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/" id="ww_7d443210e054f_u" target="_blank">Free weather widget for website</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_7d443210e054f"></script>
+    </div>
+
+    <h2 class="kerala-today-header">KERALA Today</h2>
+    <div id="ww_306f1b351ac5d" v='1.3' loc='id' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":["wl396"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/" id="ww_306f1b351ac5d_u" target="_blank">Free weather widget for website</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_306f1b351ac5d"></script>
+
+</section>
+  
   <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 Elamkulam Local Weather Observation & Information Centre</p>
-    <p>Designed and Managed by AswanthKK</p>
+    <p>Designed and Managed by Aswanthkrishna K</p>
 
-    <img src="House Public Board Seal of AswanthKK.pn" alt="HPBD Logo" class="imd-logo-footer" />
+    <img src="House Public Board Seal of AswanthKK.png" alt="HPBD Logo" class="imd-logo-footer" />
   </footer>
 <script src="elwoic-manual-update.js"></script>
 </body>
