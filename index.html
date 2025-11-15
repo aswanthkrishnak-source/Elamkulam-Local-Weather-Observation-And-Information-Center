@@ -347,9 +347,42 @@ document.getElementById("refresh-time").textContent = refreshTime;
 <h2 style="color: #0000ff;">
   ELWOIC- Easy Way To Watch Live Weather condition Of Elamkulam
 </h2>
-      <section>
-        <!-- Weather Mini Dashboard (updated with Windy radar) -->
-<div class="weather-mini-dashboard">
+     <section id="weather-section">
+  <style>
+    #weather-section {
+      font-family: 'Poppins', sans-serif;
+      color: #000;
+      padding: 20px;
+      background-color: #ffffff; /* white background */
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+    }
+    #weather-section .info-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #weather-section .info-box {
+      flex: 1 1 30%;
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    #weather-section .info-title { font-weight: bold; margin-bottom: 5px; }
+    #weather-section .info-value { font-size: 1.5em; }
+    #weather-section .info-unit { font-size: 0.9em; color: #555; }
+    #weather-section .last-update { margin-top: 15px; font-style: italic; }
+    #weather-section .windy-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+  </style>
+
   <h2>🌦 Elamkulam Weather Snapshot</h2>
 
   <div class="info-boxes">
@@ -400,17 +433,11 @@ document.getElementById("refresh-time").textContent = refreshTime;
       <div class="info-value" id="visibility">--</div>
       <div class="info-unit">km</div>
     </div>
-
-    <div class="info-box">
-      <div class="info-title">Air Quality (AQI)</div>
-      <div class="info-value" id="aqi">--</div>
-      <div class="info-unit" id="aqi-desc">--</div>
-    </div>
   </div>
 
   <p class="last-update">Last updated: <span id="updated">--</span></p>
 
-  <!-- ⭐ Windy Radar BELOW the boxes -->
+  <!-- Windy Radar -->
   <div class="windy-container">
     <iframe
       src="https://embed.windy.com/embed2.html?lat=10.9077&lon=76.2315&zoom=9&detailLat=10.9077&detailLon=76.2315&detail=true&metricWind=km/h&metricTemp=°C&marker=true"
@@ -419,6 +446,57 @@ document.getElementById("refresh-time").textContent = refreshTime;
     </iframe>
   </div>
 
+  <script>
+    const LAT = 10.9081;
+    const LON = 76.2296;
+
+    function updateUI(data) {
+      document.getElementById("temp").textContent = data.temperature ?? "--";
+      document.getElementById("feels").textContent = data.temperature ?? "--"; // Open-Meteo doesn't provide feels_like
+      document.getElementById("humidity").textContent = data.humidity ?? "--";
+      document.getElementById("wind").textContent = data.windspeed ?? "--";
+      document.getElementById("rain").textContent = data.precipitation ?? "--";
+      document.getElementById("pressure").textContent = data.pressure ?? "--";
+      document.getElementById("clouds").textContent = data.cloudcover ?? "--";
+      document.getElementById("visibility").textContent = data.visibility ?? "--";
+      document.getElementById("updated").textContent = new Date().toLocaleTimeString();
+    }
+
+    async function fetchWeather() {
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,precipitation,pressure_msl,visibility,windspeed_10m,cloudcover&timezone=auto`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const cw = data.current_weather;
+
+        // Hourly values fallback
+        const humidity = data.hourly?.relativehumidity_2m?.[0] ?? null;
+        const pressure = data.hourly?.pressure_msl?.[0] ?? null;
+        const cloudcover = data.hourly?.cloudcover?.[0] ?? null;
+        const visibility = data.hourly?.visibility?.[0] ?? null;
+
+        updateUI({
+          temperature: cw?.temperature ?? null,
+          windspeed: cw?.windspeed ?? null,
+          precipitation: cw?.precipitation ?? null,
+          humidity,
+          pressure,
+          cloudcover,
+          visibility
+        });
+      } catch (err) {
+        console.error("Weather fetch error:", err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchWeather();
+      setInterval(fetchWeather, 120000); // update every 2 minutes
+    });
+  </script>
+</section>
+
+<section>
 </div>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -577,7 +655,6 @@ loadWeatherTable();
 setInterval(loadWeatherTable, 120000);
 </script>
       </section>
-<section>
   <!-- ELWOIC WEATHER DASHBOARD -->
 <section>
 <style>
@@ -889,7 +966,6 @@ setInterval(loadWeatherTable, 120000);
     <img src="House Public Board Seal of AswanthKK.pn" alt="HPBD Logo" class="imd-logo-footer" />
   </footer>
 <script src="elwoic-manual-update.js"></script>
-<script src="snapshot.js"></script>
 </body>
 </html>
 
