@@ -347,6 +347,165 @@ document.getElementById("refresh-time").textContent = refreshTime;
 <h2 style="color: #0000ff;">
   ELWOIC- Easy Way To Watch Live Weather condition Of Elamkulam
 </h2>
+      <section>
+        <!-- Weather Mini Dashboard (updated with Windy radar) -->
+<div class="weather-mini-dashboard">
+  <h2>🌦 Elamkulam Weather Snapshot</h2>
+
+  <div class="info-boxes">
+    <div class="info-box">
+      <div class="info-title">Temperature</div>
+      <div class="info-value" id="temp">--</div>
+      <div class="info-unit">°C</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Feels Like</div>
+      <div class="info-value" id="feels">--</div>
+      <div class="info-unit">°C</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Humidity</div>
+      <div class="info-value" id="humidity">--</div>
+      <div class="info-unit">%</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Wind Speed</div>
+      <div class="info-value" id="wind">--</div>
+      <div class="info-unit">km/h</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Rain (1h)</div>
+      <div class="info-value" id="rain">--</div>
+      <div class="info-unit">mm</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Pressure</div>
+      <div class="info-value" id="pressure">--</div>
+      <div class="info-unit">hPa</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Cloud Cover</div>
+      <div class="info-value" id="clouds">--</div>
+      <div class="info-unit">%</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Visibility</div>
+      <div class="info-value" id="visibility">--</div>
+      <div class="info-unit">km</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Air Quality (AQI)</div>
+      <div class="info-value" id="aqi">--</div>
+      <div class="info-unit" id="aqi-desc">--</div>
+    </div>
+  </div>
+
+  <p class="last-update">Last updated: <span id="updated">--</span></p>
+
+  <!-- ⭐ Windy Radar BELOW the boxes -->
+  <div class="windy-container">
+    <iframe
+      src="https://embed.windy.com/embed2.html?lat=10.9077&lon=76.2315&zoom=9&detailLat=10.9077&detailLon=76.2315&detail=true&metricWind=km/h&metricTemp=°C&marker=true"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  .weather-mini-dashboard {
+    max-width: 900px;
+    margin: 5px auto;
+    padding: 10px;
+    background: transparent;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .weather-mini-dashboard h2 {
+    text-align: center;
+    color: #004080;
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+
+  .info-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .info-box {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    text-align: center;
+    padding: 8px 5px;
+    flex: 1 1 120px;
+    min-width: 110px;
+    max-width: 140px;
+  }
+
+  .info-title {
+    font-size: 0.70em;
+    color: #004080;
+    margin-bottom: 2px;
+  }
+
+  .info-value {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .info-unit {
+    font-size: 0.70em;
+    color: #777;
+  }
+
+  .last-update {
+    text-align: center;
+    color: #666;
+    font-size: 0.75em;
+    margin-top: 6px;
+  }
+
+  /* ⭐ Windy iframe style */
+  .windy-container {
+    margin-top: 12px;
+    width: 100%;
+    height: 380px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .windy-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  @media (max-width: 480px) {
+    .info-box { flex: 1 1 80px; min-width: 80px; }
+    .info-value { font-size: 1.1em; }
+    .windy-container { height: 300px; }
+  }
+</style>
+
+      </section>
 <section>
   <!-- ELWOIC WEATHER DASHBOARD -->
 <section>
@@ -890,6 +1049,7 @@ getWeatherData();
     <img src="House Public Board Seal of AswanthKK.pn" alt="HPBD Logo" class="imd-logo-footer" />
   </footer>
 <script src="elwoic-manual-update.js"></script>
+      <script src="snapshot.js"></script>
 </body>
 </html>
 
