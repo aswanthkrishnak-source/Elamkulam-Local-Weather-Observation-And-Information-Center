@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Page Not Found | ELWOIC</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f5f8fb;
+      color: #1f2937;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      background: white;
+      padding: 50px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .weather-icon {
+      font-size: 70px;
+      margin-bottom: 10px;
+    }
+
+    .error-code {
+      font-size: 80px;
+      font-weight: 800;
+      margin: 0;
+      color: #2563eb;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 30px;
+    }
+
+    p {
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .requested-page {
+      display: inline-block;
+      margin: 15px 0;
+      padding: 10px 15px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      color: #475569;
+      word-break: break-all;
+      font-family: monospace;
+    }
+
+    .buttons {
+      margin-top: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 22px;
+      margin: 5px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      background: #2563eb;
+      color: white;
+    }
+
+    .button.secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="weather-icon">🌦️</div>
+
+    <h2 class="error-code">404</h2>
+
+    <h1>Page Not Found</h1>
+
+    <p>
+      Sorry, the page you're looking for doesn't exist,
+      may have been moved, or is currently under construction.
+    </p>
+
+    <div class="requested-page" id="requestedPage"></div>
+
+    <div class="buttons">
+      <a href="/" class="button">
+        🏠 Go to ELWOIC
+      </a>
+
+      <a href="/Forecast.html" class="button secondary">
+        🌤️ Weather Forecast
+      </a>
+    </div>
+
+    <div class="footer">
+      Elamkulam Local Weather Observation And Information Centre
+      <br>
+      ELWOIC
+    </div>
+
+  </div>
+
+  <script>
+    // Show the page that the visitor tried to open
+    document.getElementById("requestedPage").textContent =
+      window.location.pathname;
+  </script>
+
+</body>
+</html>
